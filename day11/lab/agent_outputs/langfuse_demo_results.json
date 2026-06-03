@@ -1,0 +1,63 @@
+{
+  "run_id": "184043",
+  "results": [
+    {
+      "id": "TXN100441",
+      "merchant": "QuickMart",
+      "amount": 4521.5,
+      "decision": "PASS",
+      "expected": "PASS",
+      "correct": true,
+      "reason": "All fields are valid and the amount is reasonable for the merchant type.",
+      "latency_ms": 1161,
+      "tokens": 218
+    },
+    {
+      "id": "TXN100467",
+      "merchant": "FuelPlus",
+      "amount": -892.0,
+      "decision": "QUARANTINE",
+      "expected": "QUARANTINE",
+      "correct": true,
+      "reason": "Transaction has a negative amount and an unknown currency.",
+      "latency_ms": 832,
+      "tokens": 216
+    },
+    {
+      "id": "TXN100489",
+      "merchant": "Apollo Hospital",
+      "amount": 980000.0,
+      "decision": "FLAG",
+      "expected": "PASS",
+      "correct": false,
+      "reason": "Amount is greater than 500000 INR with no business context",
+      "latency_ms": 719,
+      "tokens": 223
+    },
+    {
+      "id": "TXN100512",
+      "merchant": "CloudStore",
+      "amount": 15230.0,
+      "decision": "QUARANTINE",
+      "expected": "QUARANTINE",
+      "correct": true,
+      "reason": "Unknown currency and future date",
+      "latency_ms": 819,
+      "tokens": 214
+    },
+    {
+      "id": "TXN100534",
+      "merchant": "CafeBlend",
+      "amount": 340.0,
+      "decision": "QUARANTINE",
+      "expected": "QUARANTINE",
+      "correct": true,
+      "reason": "The transaction date is in the future.",
+      "latency_ms": 817,
+      "tokens": 213
+    }
+  ],
+  "correct": 4,
+  "total": 5,
+  "student_judgment": "Add the merchant category (e.g., healthcare, retail, fuel, hospitality) and other relevant business context to the prompt so the model can determine whether a high-value transaction is normal for that type of merchant before flagging it as suspicious."
+}

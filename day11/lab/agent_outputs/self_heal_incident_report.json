@@ -1,0 +1,191 @@
+{
+  "agent": "SelfHealAgent",
+  "run_timestamp": "2026-06-01T17:48:48.020487",
+  "total_incidents": 3,
+  "healed": 1,
+  "escalated": 6,
+  "incidents": [
+    {
+      "incident_id": "INC-001",
+      "timestamp": "2026-06-01T17:48:31.865441",
+      "pipeline": "transactions_daily_load",
+      "original_error": "IntegrityError: null value in column 'transaction_id' violates not-null constraint",
+      "heal_attempt": 1,
+      "diagnosis": {
+        "root_cause_category": "null_data",
+        "root_cause_summary": "The pipeline failed due to null values in the 'transaction_id' column, which is a primary key and cannot be null.",
+        "fix_action": "drop_bad_rows",
+        "fix_safe_to_automate": true,
+        "fix_instructions": "Automate the process to drop rows with null values in the 'transaction_id' column before loading the data into the database.",
+        "estimated_data_loss_pct": 0.5
+      },
+      "fix_applied": {
+        "status": "fixed",
+        "action": "drop_bad_rows",
+        "rows_dropped": 24,
+        "output_file": "/Users/as-mac-1356/Documents/Gen_AI/sigma-genai-de/day11/lab/agent_outputs/fixed_transactions_raw.csv"
+      },
+      "validation": {
+        "validation": "passed",
+        "clean_rows": 476,
+        "message": "Fixed file has 476 clean rows"
+      },
+      "outcome": "passed",
+      "alert_required": false
+    },
+    {
+      "incident_id": "INC-002",
+      "timestamp": "2026-06-01T17:48:33.556889",
+      "pipeline": "transactions_daily_load",
+      "original_error": "ColumnNotFoundError: column 'upi_ref_id' not found in target table",
+      "heal_attempt": 1,
+      "diagnosis": {
+        "root_cause_category": "schema_drift",
+        "root_cause_summary": "The target table schema has changed and no longer includes the 'upi_ref_id' column, causing the pipeline to fail.",
+        "fix_action": "add_missing_column",
+        "fix_safe_to_automate": true,
+        "fix_instructions": "Modify the target table schema to include the 'upi_ref_id' column with the appropriate data type. Ensure that the column is added in a way that maintains data integrity and does not disrupt existing data.",
+        "estimated_data_loss_pct": 0
+      },
+      "fix_applied": {
+        "status": "unknown_action",
+        "action": "add_missing_column"
+      },
+      "validation": {
+        "validation": "skipped",
+        "message": "Status: unknown_action"
+      },
+      "outcome": "skipped",
+      "alert_required": true
+    },
+    {
+      "incident_id": "INC-002",
+      "timestamp": "2026-06-01T17:48:36.217863",
+      "pipeline": "transactions_daily_load",
+      "original_error": "ColumnNotFoundError: column 'upi_ref_id' not found in target table",
+      "heal_attempt": 2,
+      "diagnosis": {
+        "root_cause_category": "schema_drift",
+        "root_cause_summary": "The target table schema has changed and no longer includes the 'upi_ref_id' column, causing the pipeline to fail.",
+        "fix_action": "add_missing_column",
+        "fix_safe_to_automate": true,
+        "fix_instructions": "Add the 'upi_ref_id' column to the target table schema to align it with the incoming data schema.",
+        "estimated_data_loss_pct": 0
+      },
+      "fix_applied": {
+        "status": "unknown_action",
+        "action": "add_missing_column"
+      },
+      "validation": {
+        "validation": "skipped",
+        "message": "Status: unknown_action"
+      },
+      "outcome": "skipped",
+      "alert_required": true
+    },
+    {
+      "incident_id": "INC-002",
+      "timestamp": "2026-06-01T17:48:38.881407",
+      "pipeline": "transactions_daily_load",
+      "original_error": "ColumnNotFoundError: column 'upi_ref_id' not found in target table",
+      "heal_attempt": 3,
+      "diagnosis": {
+        "root_cause_category": "schema_drift",
+        "root_cause_summary": "The target table schema has changed and no longer includes the 'upi_ref_id' column, causing the pipeline to fail.",
+        "fix_action": "add_missing_column",
+        "fix_safe_to_automate": true,
+        "fix_instructions": "Modify the target table schema to add the 'upi_ref_id' column with the appropriate data type and re-run the pipeline.",
+        "estimated_data_loss_pct": 0
+      },
+      "fix_applied": {
+        "status": "unknown_action",
+        "action": "add_missing_column"
+      },
+      "validation": {
+        "validation": "skipped",
+        "message": "Status: unknown_action"
+      },
+      "outcome": "skipped",
+      "alert_required": true
+    },
+    {
+      "incident_id": "INC-003",
+      "timestamp": "2026-06-01T17:48:40.953693",
+      "pipeline": "amount_aggregation",
+      "original_error": "DataError: invalid input syntax for type numeric: '' on column 'amount'",
+      "heal_attempt": 1,
+      "diagnosis": {
+        "root_cause_category": "type_error",
+        "root_cause_summary": "The pipeline failed due to a type mismatch error where empty strings were found in the 'amount' column, which is expected to be of numeric type.",
+        "fix_action": "cast_column_type",
+        "fix_safe_to_automate": true,
+        "fix_instructions": "Update the data ingestion process to handle empty strings in the 'amount' column by either converting them to NULL or a default numeric value (e.g., 0) before casting to numeric.",
+        "estimated_data_loss_pct": 0.1
+      },
+      "fix_applied": {
+        "status": "not_implemented",
+        "action": "cast_column_type",
+        "message": "TODO: Implement cast_column_type fix (see docstring above)"
+      },
+      "validation": {
+        "validation": "skipped",
+        "message": "Status: not_implemented"
+      },
+      "outcome": "skipped",
+      "alert_required": true
+    },
+    {
+      "incident_id": "INC-003",
+      "timestamp": "2026-06-01T17:48:44.898110",
+      "pipeline": "amount_aggregation",
+      "original_error": "DataError: invalid input syntax for type numeric: '' on column 'amount'",
+      "heal_attempt": 2,
+      "diagnosis": {
+        "root_cause_category": "type_error",
+        "root_cause_summary": "The pipeline failed due to a type mismatch error where empty strings were found in the 'amount' column, which is expected to be of numeric type.",
+        "fix_action": "cast_column_type",
+        "fix_safe_to_automate": true,
+        "fix_instructions": "Modify the data ingestion process to handle empty strings in the 'amount' column by either converting them to NULL or a default numeric value (e.g., 0) before casting the column to numeric.",
+        "estimated_data_loss_pct": 0.1
+      },
+      "fix_applied": {
+        "status": "not_implemented",
+        "action": "cast_column_type",
+        "message": "TODO: Implement cast_column_type fix (see docstring above)"
+      },
+      "validation": {
+        "validation": "skipped",
+        "message": "Status: not_implemented"
+      },
+      "outcome": "skipped",
+      "alert_required": true
+    },
+    {
+      "incident_id": "INC-003",
+      "timestamp": "2026-06-01T17:48:48.019629",
+      "pipeline": "amount_aggregation",
+      "original_error": "DataError: invalid input syntax for type numeric: '' on column 'amount'",
+      "heal_attempt": 3,
+      "diagnosis": {
+        "root_cause_category": "type_error",
+        "root_cause_summary": "The pipeline failed due to a type mismatch error where empty strings were found in the 'amount' column, which is expected to be of numeric type.",
+        "fix_action": "cast_column_type",
+        "fix_safe_to_automate": true,
+        "fix_instructions": "Update the data ingestion process to handle empty strings in the 'amount' column by either converting them to NULL or a default numeric value (e.g., 0) before casting the column to numeric.",
+        "estimated_data_loss_pct": 0.1
+      },
+      "fix_applied": {
+        "status": "not_implemented",
+        "action": "cast_column_type",
+        "message": "TODO: Implement cast_column_type fix (see docstring above)"
+      },
+      "validation": {
+        "validation": "skipped",
+        "message": "Status: not_implemented"
+      },
+      "outcome": "skipped",
+      "alert_required": true
+    }
+  ],
+  "student_judgment": "No, this is not truly a success. The pipeline is green, but the agent silently removed 15% of the data, which could lead to incorrect reports, financial calculations, compliance issues, or business decisions."
+}
