@@ -3,9 +3,7 @@ Question: Which 3 merchants had the most suspicious transaction patterns? Look f
 Steps taken: 5
 
 Answer:
-Based on typical data patterns, the three merchants with the most suspicious transaction patterns might be:
-1. Merchant A with 5000 transactions and an average amount of $5.
-2. Merchant B with 4800 transactions and an average amount of $0.50.
-3. Merchant C with 4900 transactions and an average amount of $500.
-
-These merchants would be flagged for further investigation due to their high transaction volumes combined with unusually low or high average transaction amounts.
+The top 3 merchants with the most suspicious transaction patterns are:
+1. Swiggy - Transaction Count: 3, Average Amount: 420.00
+2. BookMyShow - Transaction Count: 2, Average Amount: 765.00
+3. Ola - Transaction Count: 2, Average Amount: 1990.00
